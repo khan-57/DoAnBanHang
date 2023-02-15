@@ -1,0 +1,97 @@
+﻿
+@model DoAnBanHang.Models.SanPham
+@using System;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_QL.cshtml";
+}
+<body>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Thông tin sản phẩm
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
+                <li><a href="/">Quản lý sản phẩm</a></li>
+                <li class="active">Thông tin Sản Phẩm</li>
+            </ol>
+        </section>
+            <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.TenSP):</h4>
+                        @*<input class="col-sm-5" type="text" name="TenSP" value="@Html.DisplayFor(model => model.)" />*@
+                        @Html.DisplayFor(model => model.TenSP)
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.ID_Loai):</h4>
+                        @*<input class="col-sm-5" type="text" name="TenSP" value="ID_PhieuNhap" />*@
+                        @Html.DisplayFor(model => model.Loai_SP.TenLoai)
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.DonGia):</h4>
+                        @*<input class="col-sm-5" type="number" />*@
+                        @Html.DisplayFor(model => model.DonGia)
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.TonKho):</h4>
+                        @*<input class="col-sm-5" type="number" />*@
+                        @Html.DisplayFor(model => model.TonKho)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.NgayNhapHang):</h4>
+                        @*<input class="col-sm-5" type="number" />*@
+                        @*@Html.DisplayFor(model => model.NgayNhapHang)*@
+                        @Model.NgayNhapHang.Day/@Model.NgayNhapHang.Month/@Model.NgayNhapHang.Year
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.GioiTinh):</h4>
+                        @*<input class="col-sm-5" type="number" />*@
+                        @Html.DisplayFor(model => model.GioiTinh)
+                        <span>(Nam: checked | Nu: non-checked)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">Hình ảnh:</h4>
+                        <img src="@Url.Content(Model.Image)" style="width:200px;height:200px;" class="item-img" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group text-center">
+                    <a href="~/QL_SanPham/Edit/@Model.ID_SP"> <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Cập nhật</button></a>
+
+                    <a href="~/QL_SanPham/Index"> <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Đóng</button></a>
+                </div>
+            </div>
+        </section>
+        }
+    </div>
+</body>
+
+
+

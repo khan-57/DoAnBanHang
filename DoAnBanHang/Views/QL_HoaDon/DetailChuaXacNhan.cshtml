@@ -1,0 +1,185 @@
+﻿@model DoAnBanHang.Models.HoaDon
+@using  DoAnBanHang.Models
+@{
+    ViewBag.Title = "DetailChuaXacNhan";
+    Layout = "~/Views/Shared/_Layout_QL.cshtml";
+
+    var tongTien = ViewBag.TongTien;
+    var chiTiet = ViewBag.ChiTiet;
+    var dem = 1;
+}
+
+<html>
+<head>
+    <!-- css -->
+    <link href="~/Content/Assets/CssPhieu.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Chi tiết hóa đơn
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
+                <li><a href="/">Quản lý hóa đơn</a></li>
+                <li class="/">Danh sách hóa đơn chưa xác nhận</li>
+                <li class="active">Chi tiết hóa đơn</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+       
+        <section class="content">
+
+            <div class=" row">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <h4 class="col-sm-6" id="title">Mã Đơn:</h4>
+                            <div class="col-sm-5">
+                                @Html.DisplayFor(model => model.ID_HoaDon)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <h4 class="col-sm-6" id="title">Trạng thái đơn hàng:</h4>
+                            <div class="col-sm-5">
+                                @Html.DisplayFor(model => model.TrangThaiThanhToan)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <h4 class="col-sm-6" id="title">Tài khoản khách:</h4>
+                            <div class="col-sm-5">
+                                @*@item.Ten*@
+                                @Model.TaiKhoan.Ten
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <h4 class="col-sm-6" id="title">SĐT:</h4>
+                            <div class="col-sm-5">
+                                @*@item.SDT*@
+                                @Model.TaiKhoan.SDT
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <h4 class="col-sm-6" id="title">Địa chỉ:</h4>
+                            <div class="col-sm-5">
+                                @*@item.DiaChi*@
+                                @Model.TaiKhoan.DiaChi
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*}*@
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title text-center">Danh sách sản phẩm</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="tblData" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">Size</th>
+                                        <!-- <th class="text-center">Loại SP</th> -->
+                                        <th class="text-center">Đơn Giá</th>
+                                        <th class="text-center">Số Lượng</th>
+                                        <!-- <th class="text-center"></th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.ChiTiet)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@dem</td>
+                                            <td class="text-center">@item.ID_Size</td>
+                                            <!-- <td class="text-center">Áo</td> -->
+                                            <td class="text-center">@item.DonGia</td>
+                                            <td class="text-center">@item.SoLuong</td>
+                                        </tr>
+                                        dem++;
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="form-Phieu row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h2>Tổng tiền:</h2>
+                    </div>
+                    <div class="col-sm-7">
+                        <h2>@tongTien</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        @*@using (Html.BeginForm("","",FormMethod.Post))
+        {*@ 
+            <div class="form-Phieu row">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                @*<a href="@Url.Action("DanhSachHoaDonXacNhan","QL_HoaDon")">
+                                    <button type="submit" class="btn btn-primary btn-lg" style="background-color: green;">
+                                        Xác nhận đơn
+                                    </button>
+                                </a>*@
+                                <form action="/QL_HoaDon/SetTrangThai/@Model.ID_HoaDon" method="post">
+                                    @*<input type="hidden" value="@Model.ID_HoaDon" name="ID_HoaDon"/>*@
+                                    <button type="submit" class="btn btn-primary btn-lg" style="background-color: green;">
+                                        Xác nhận đơn
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="col-sm-4">
+                                    <a href="/QL_HoaDon/DeleteChuaXacNhan/@Model.ID_HoaDon" class="btn btn-primary btn-lg" style="background-color: red;">Hủy đơn</a>
+                                    @*@Html.ActionLink("Delete","DeleteHoaDon",new { id = Model.ID_HoaDon})*@
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-4">
+                                    <a href="/QL_HoaDon/DanhSachHoaDonChuaXacNhan" class="btn btn-primary btn-lg">Đóng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+        @*}*@
+        </section>
+    </div>
+</body>
+</html>
+
+
+

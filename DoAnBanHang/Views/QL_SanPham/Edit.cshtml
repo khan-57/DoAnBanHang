@@ -1,0 +1,129 @@
+﻿@model DoAnBanHang.Models.SanPham
+@using System;
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout_QL.cshtml";
+}
+
+<body>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Sửa thông tin sản phẩm
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
+                <li><a href="/">Quản lý sản phẩm</a></li>
+                <li class="active">Sửa thông tin Sản Phẩm</li>
+            </ol>
+        </section>
+        @using (Html.BeginForm("Edit", "QL_SanPham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            @Html.HiddenFor(model => model.ID_SP)
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.TenSP):</h4>
+                    @*<input class="col-sm-5" type="text" name="TenSP" value="@Html.DisplayFor(model => model.)" />*@
+                    @Html.EditorFor(model => model.TenSP)
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.ID_Loai):</h4>
+                    @*<input class="col-sm-5" type="number" />*@
+                    @Html.HiddenFor(model=>model.ID_Loai)
+                    @Html.DisplayFor(model => model.Loai_SP.TenLoai)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.DonGia):</h4>
+                    @*<input class="col-sm-5" type="number" />*@
+                    @Html.EditorFor(model => model.DonGia)
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.TonKho):</h4>
+                    @*<input class="col-sm-5" type="number" />*@
+                    @Html.DisplayFor(model => model.TonKho)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.NgayNhapHang):</h4>
+                    @*<input class="col-sm-5" type="number" />*@
+                    @Model.NgayNhapHang.Day/@Model.NgayNhapHang.Month/@Model.NgayNhapHang.Year
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.GioiTinh):</h4>
+                    @*<input class="col-sm-5" type="number" />*@
+                    @Html.DisplayFor(model => model.GioiTinh)
+                    <span>(Nam: checked | Nu: non-checked)</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.Image)</h4>
+                    <div class="col-sm-4" style="width:300px">
+                        @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.TextBox("fileImage", "", new { type = "file", accept = "/Image/" })*@
+                    </div>
+                    <img name="fileImage" src="@Url.Content(Model.Image)" style="width:200px;height:200px;" id="previewImage" />
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group text-center">
+
+                <input type="submit" value="Cập nhật" class="btn btn-primary btn-lg" />
+
+                <a href="/QL_SanPham/Details/@Model.ID_SP"><button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Đóng</button></a>
+            </div>
+        </div>
+    </section>
+        }
+        </div>
+</body>
+<script>
+    function ShowImagePreview(fileImage, previewImage) {
+        if (fileImage.files && fileImage.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(previewImage).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(fileImage.files[0]);
+        }
+    }
+    fileImage.onchange = evt => {
+
+        const [file] = fileImage.files
+
+        if (file) {
+
+            previewImage.src = URL.createObjectURL(file);
+
+            $("#previewImage").removeClass("hidden");
+
+        }
+
+    }
+</script>
+
+
+

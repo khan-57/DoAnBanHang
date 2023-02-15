@@ -1,0 +1,148 @@
+﻿
+@model DoAnBanHang.Models.Account
+@*@using DoAnBanHang.Models.Account;*@
+@{
+    Layout = null;
+
+}
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Đăng ký hệ thống</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.4 -->
+    <link href="~/Content/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="~/Content/Assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- iCheck -->
+    <link href="~/Content/Assets/plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Bootstrap 3.3.4 -->
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- FontAwesome 4.3.0 -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons 2.0.0 -->
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="~/Content/Assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Assets/plugins/select2/select2.min.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="~/Content/Assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <!-- iCheck -->
+    <link href="~/Content/Assets/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Morris chart -->
+    <link href="~/Content/Assets/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <!-- jvectormap -->
+    <link href="~/Content/Assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Assets/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+    <!-- Date Picker -->
+    <link href="~/Content/Assets/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker -->
+    <link href="~/Content/Assets/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="~/Content/Assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+@using (Html.BeginForm("DangKy", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <body style=" text-align: center;
+            margin-top:10%;">
+        <div class="form-dangNhap" style="left:50%">
+            <h2 style="text-align: center">ĐĂNG KÝ THÀNH VIÊN</h2>
+            <br />
+            <div class="row">
+
+
+                <h3 style="color:red"> @Html.ValidationSummary(true)</h3>
+                <div class="row">
+                    <div class="form-group col-lg-6">
+
+                        <label for="dangnhap" class="col-sm-4" style="left:5%">Tên đăng nhập:</label>
+                        <div class="col-sm-5">
+                            @Html.TextBox("Username", null, new
+                            {
+                                @class = "form-control",
+                                @id =
+                            "dangnhap",
+                                required = "required"
+                            })
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+
+                            <label for="matkhau" class="col-sm-3" style="left:5%">Mat khau:</label>
+                            <div class="col-sm-5">
+                                @Html.Password("Password", null, new
+                                {
+                                    @class = "form-control",
+                                    @id =
+                                "matkhau",
+                                    required = "required"
+                                })
+                            </div>
+
+                     </div>
+                    
+                 </div>
+                <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label for="name" class="col-sm-4" style="left:5%">Họ và Tên:</label>
+                            <div class="col-sm-5">
+                                @Html.TextBox("Ten", null, new { @class = "form-control", @id =
+                                "name", required = "required" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label for="dienthoai" class="col-sm-3" style="left:5%">Điện thoại:</label>
+                            <div class="col-sm-5">
+
+                                @Html.TextBox("SDT", null, new { @class = "form-control", @id =
+                                "dienthoai", required = "required" })
+                            </div>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="form-group col-lg-6">
+
+                            <label for="diachi" class="sol-sm-10" style="left:5%"></label>
+                            <label for="diachi" class="col-sm-4" style="left:5%">Địa chỉ:</label>
+                            <div class="col-sm-5">
+                                @Html.TextBox("DiaChi", null, new { @class = "form-control", @id =
+                                "diachi"})
+                            </div>
+                        </div>
+                   
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4">
+                        <input type="submit" class="btn" value="Đăng ký" />
+                        <a href="/Account/DangNhap" class="btn" value="Đóng" type="button">Đóng</a>
+                    </div>
+                    <div class="col-sm-4"></div>
+                </div>
+                
+           </div>
+        </div>
+    </body>
+}
+</html>
+
+
+

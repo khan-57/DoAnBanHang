@@ -1,0 +1,86 @@
+﻿@using DoAnBanHang.Models
+@model IEnumerable<SanPham>
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="sidebar-category">
+        <h1 class="category">Category</h1>
+        <div class="side-filter">
+            <label for=""><i class="fa-solid fa-filter"></i>BỘ LỌC</label>
+            <select class="filter" name="price">
+                <option value="">Lọc giá</option>
+                <option value="">100.000đ - 200.000đ</option>
+                <option value="">200.000đ - 300.000đ</option>
+                <option value="">300.000đ - 500.000đ</option>
+            </select>
+            <select class="filter" name="size">
+                <option value="">Kích thước</option>
+                <option value="freesize">Freesize</option>
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+            </select>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="products">
+        <div class="row">
+            @*<div class="col-md-4 item">
+            <a href="~/Detail/Index">
+                <div class="item-inner"></div>
+                <img src="~/Image/5.jpg" class="item-img" />
+                <p class="item-name">HUMAN MADE FLYING DUCK T-SHIRT BLACK</p>
+                <div class="item-price">
+                    <span>2.000.000đ</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 item">
+            <a href="~/Detail/Index">
+                <div class="item-inner"></div>
+                <img src="~/Image/5.jpg" class="item-img" />
+                <p class="item-name">HUMAN MADE FLYING DUCK T-SHIRT BLACK</p>
+                <div class="item-price">
+                    <span>2.000.000đ</span>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4 item">
+            <a href="~/Detail/Index">
+                <div class="item-inner"></div>
+                <img src="~/Image/5.jpg" class="item-img" />
+                <p class="item-name">HUMAN MADE FLYING DUCK T-SHIRT BLACK</p>
+                <div class="item-price">
+                    <span>2.000.000đ</span>
+                </div>
+            </a>
+        </div>*@
+            @foreach (var item in Model)
+            {
+                if (item.ID_Loai == 3)
+                {
+                    <div class="col-md-4 item">
+                        <a href="/Detail/Index/@item.ID_SP">
+                            <div class="item-inner"></div>
+                            <div class="item-img-wrap">
+                                <img src="@Url.Content(item.Image)" class="item-img" />
+                            </div>
+                            <p class="item-name">@Html.DisplayFor(modelItem => item.TenSP)</p>
+                            <div class="item-price">
+
+                                <span> @Html.DisplayFor(modelItem => item.DonGia) đ</span>
+                            </div>
+                        </a>
+                        @*<a href="/Shopping/AddToCart/@item.IDPro" id="btn_cart">Thêm vào giỏ</a>*@
+                    </div>
+                }
+            }
+            
+        </div>
+    </div>
+</div>
+

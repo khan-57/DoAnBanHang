@@ -1,0 +1,32 @@
+/* .form-Cha{
+    width: 80%;
+    display: flex;
+		  align-items: center;
+		  justify-content: center;
+} */
+.form-Cha{
+    margin-top: 50px;
+    background-color: rgb(232, 226, 226);
+}
+.form-Phieu{
+    width: 80%;
+    
+    margin: 0 auto;
+}
+.form-Phieu:first-child div{
+    padding-bottom: 10px;
+}
+.form-Phieu:first-child div div div #title{
+    left: 20%;
+}
+.table tr th td {
+    border: solid 1px black;
+}
+.body{
+   
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    
+}

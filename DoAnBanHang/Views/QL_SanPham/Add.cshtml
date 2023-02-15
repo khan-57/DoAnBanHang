@@ -1,0 +1,182 @@
+﻿@model DoAnBanHang.Models.SanPham
+@using DoAnBanHang.Models;
+@{
+    ViewBag.Title = "Form_add";
+    Layout = "~/Views/Shared/_Layout_QL.cshtml";
+
+    //var Loaisp = ViewBag.Loaisp;
+    var kco = ViewBag.Kichco;
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Thêm Sản Phẩm
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
+                <li><a href="/">Quản lý sản phẩm</a></li>
+                <li class="active">Thêm Sản Phẩm</li>
+            </ol>
+        </section>
+        @using (Html.BeginForm("Add","QL_SanPham",FormMethod.Post,new { @enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+            <!-- Main content -->
+    <section class="content">
+        <div class="row">
+           
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.TenSP)</h4>
+                    @*<input class="col-sm-5" type="text" name="TenSP" />*@
+                <div class="col-sm-5">
+                    @Html.EditorFor(s => s.TenSP)
+                    @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.DonGia)</h4>
+                    @*<input class="col-sm-5" name="DonGia" type="number" />*@
+                <div class="col-sm-5">
+                    @Html.EditorFor(s => s.DonGia)
+                    @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.KichCoes)</h4>
+                    @*<input class="col-sm-5" type="text" name="TenSP" />*@
+                <div class="col-sm-5">
+                    <select class="col-sm-5" style="width:100px">
+                        <option>--Size--</option>
+                        <option name="cate">S</option>
+                        <option name="cate">M</option>
+                        <option name="cate">L</option>
+                        <option name="cate">XL</option>
+                    </select>
+                </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.GioiTinh)</h4>
+                    @*<input class="col-sm-5" name="DonGia" type="number" />*@
+                <div class="col-sm-5" >
+                    @Html.EditorFor(s=>s.GioiTinh)
+                    <span>(Nam : checked | Nu : non-checked)</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.Loai_SP)</h4>
+                    @*<input class="col-sm-5" type="text" name="LoaiSp"  />*@
+                    @*<select class="col-sm-5">
+                        <option>--Loại sản phẩm--</option>
+                        <option name="cate">Áo</option>
+                        <option name="cate">Quần</option>
+                        <option name="cate">Giày</option>
+                    </select>*@
+                    <div class="col-sm-5">
+                     
+                            @Html.DropDownList("ID_Loai", null, htmlAttributes: new { @class = "" })
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">@Html.DisplayNameFor(model => model.Image)</h4>
+                    @*<input class="col-sm-5" type="file" />*@
+
+                <div class="col-sm-5">
+
+
+                    @Html.TextBox("fileImage", "", new { type = "file", accept = "~/Image/" })
+                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+
+                    <img src="#" style="width:200px;height:200px;" id="previewImage" class="hidden" />
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <h4 class="col-sm-6" id="title">SoLuong</h4>
+                    <div class="col-sm-5">
+                        <input type="number" name="value" value="" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+            
+        <div class="row">
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Thêm mới</button>
+                <a href="/QL_SanPham/Index"><button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Đóng</button></a>
+            </div>
+        </div>
+
+    </section>
+        }
+    </div>
+    
+</body>
+</html>
+<script>
+    //function ShowImagePreview(imageUploader, previewImage) {
+    //    if (imageUploader.files && imageUploader.files[0]) {
+    //        var reader = new FileReader();
+    //        reader.onload = function (e) {
+    //            $(previewImage).attr('src', e.target.result);
+    //        }
+    //        reader.readAsDataURL(imageUploader.files[0]);
+    //    }
+    //}
+    fileImage.onchange = evt => {
+
+        const [file] = fileImage.files
+
+        if (file) {
+
+            previewImage.src = URL.createObjectURL(file);
+
+            $("#previewImage").removeClass("hidden");
+
+        }
+
+    }
+</script>
+
+
+
+
+
+
+

@@ -1,0 +1,197 @@
+﻿@using DoAnBanHang.Models
+@model List<Cart>
+@using System;
+@{
+    ViewBag.Title = "ThanhToan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var dem = 1;
+    TaiKhoan khach = Session["TaiKhoan"] as TaiKhoan;
+    
+
+
+
+
+}
+@*@using (Html.BeginForm("ThanhToan", "Cart"))
+    {*@
+
+    <h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên sản phẩm</th>
+                <th>Ảnh minh họa</th>
+                <th>Số lượng</th>
+                <th>Kích cỡ</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@dem</td>
+                    <td>@item.TenSP</td>
+
+                    <td>
+                        <div class="item-img-wrap">
+                            <img class="detail-img" src="@Url.Content(item.Image)">
+                        </div>
+                    </td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.Size</td>
+                    <td>@String.Format("{0:0,0}", item.DonGia)</td>
+                    <td>@String.Format("{0:0,0}", item.ThanhTien())</td>
+                </tr>
+                dem++;
+            }
+            <tr style="font-weight:bold; text-align:right; color:red;">
+                <td colspan="4">Tổng số lượng: @ViewBag.TongSL</td>
+                <td colspan="5">Tổng tiền: @ViewBag.TongTien</td>
+            </tr>
+        </tbody>
+    </table>
+
+  <form action="/Cart/DongYThanhToan" method="post">
+    <h2 style="text-align:center">THÔNG TIN KHÁCH HÀNG</h2>
+    <table class="table table-bordered">
+
+
+        <tr>
+            <td>Họ tên: </td>
+            <td>@khach.Ten</td>
+        </tr>
+        <tr>
+            <td>Địa chỉ: </td>
+            @*<td>
+                <input type="text" name="DiaChi" value="" />
+                <label>De trong neu su dung dia chi mac dinh</label>
+            </td>*@
+            <td>@khach.DiaChi</td>
+        </tr>
+        <tr>
+            <td>Điện thoại: </td>
+            <td>@khach.SDT</td>
+        </tr>
+        <tr>
+            <td>Username:</td>
+            <td>@khach.Username</td>
+        </tr>
+        <tr>
+            <td>Ngày đặt: </td>
+            <td>@DateTime.Now.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td>Hình thức thanh toán:</td>
+            <td>
+                @*<select>
+                        <option>--Lựa chọn hình thức thanh toán--</option>
+                        @foreach (var item in ViewBag.ThanhToan)
+                        {
+
+                            <option value="@item.Ten" name="Check">
+                                @item.Ten
+                            </option>
+                        }
+                    </select>*@
+                @foreach (var item in ViewBag.ThanhToan)
+                {
+
+                    <input value="@item.ID_ThanhToan" name="Check" type="radio" />
+                    <label>@item.Ten</label>
+                }
+
+                @*@Html.DropDownList("Options", ViewData["Options"] as SelectList, "--Select Item--")*@
+            </td>
+
+        </tr>
+
+    <tr>
+        <td>
+            Chọn Mã khuyễn mãi (nếu có):
+        </td>
+        <td>
+            @*<select>
+            <option>--Lựa chọn mã khuyễn mãi--</option>
+            @foreach (var item in ViewBag.Voucher)
+            {
+                <option value="@item.ID_KM" name="ID_KhuyenMai">
+                    <label>@item.TenKhuyenMai</label>
+                </option>
+            }
+        </select>*@
+            @if (khach.Diem == 0)
+        {
+                    foreach (var item in ViewBag.Voucher)
+                    {
+                        if (item.GiaTri == 0)
+                        {
+                    <input value="@item.ID_KM" name="ID_KhuyenMai" type="hidden" />
+                    <p>Khong co ma khuyen mai</p>
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+
+                }
+        else if (khach.Diem < 5)
+                {
+                    foreach (var item in ViewBag.Voucher)
+                    {
+                        if (item.GiaTri < 50)
+                        {
+
+                    <input value="@item.ID_KM" name="ID_KhuyenMai" type="radio" />
+                    <label>@item.TenKhuyenMai</label>
+
+
+                }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                else if (khach.Diem >= 5)
+                {
+                    foreach (var item in ViewBag.Voucher)
+                    {
+                        if (item.GiaTri >= 50)
+                        {
+
+                    <input value="@item.ID_KM" name="ID_KhuyenMai" type="radio" />
+                    <label>@item.TenKhuyenMai</label>
+
+
+                }
+                    }
+                }
+          
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">
+            @Html.ActionLink("Tiếp tục mua sắm", "TrangChu", "TrangChu", null, new
+            {
+                @class = "btn btn - primary"
+            })
+        </td>
+        <td colspan="2" style="text-align: center;">
+            @*<input type="submit" class="btn btn - primary" src="@Url.Action("ThanhToan","Cart")" />*@
+            <input type="submit" class="btn btn - primary" value="Thanh toan"/>
+            @*<input type="submit" class="btn btn - primary" src="@Html.ActionLink("Thanh Toán", "DongYThanhToan",check, new
+                {
+                    @class = "btn btn - primary"
+                     }) " />*@
+
+
+        </td>
+    </tr>
+    </table>
+</form>

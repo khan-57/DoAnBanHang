@@ -1,0 +1,65 @@
+﻿
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //var query1 = ViewBag.querys;
+}
+
+<div class="container-fluid">
+    <div class="sidebar-category">
+        <h1 class="category">Category</h1>
+        <div class="side-filter">
+            <label for=""><i class="fa-solid fa-filter"></i>BỘ LỌC</label>
+            <select class="filter" name="price">
+                <option value="">Lọc giá</option>
+                <option value="">100.000đ - 200.000đ</option>
+                <option value="">200.000đ - 300.000đ</option>
+                <option value="">300.000đ - 500.000đ</option>
+            </select>
+            <select class="filter" name="size">
+                <option value="">Kích thước</option>
+                <option value="freesize">Freesize</option>
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+            </select>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="products">
+        <div class="row">
+
+            @foreach (var item in ViewBag.query)
+            {
+
+
+                <div class="col-md-4 item">
+                    <a href="~/Detail/Index/@item.ID_SP">
+                        <div class="item-inner"></div>
+                        <div class="item-img-wrap">
+                            <img src="@Url.Content(item.SanPham.Image)" class="item-img" />
+                        </div>
+                        <p class="item-name">@item.SanPham.TenSP</p>
+                        <div class="item-price">
+                            <p class="item-name">@item.SanPham.DonGia</p>
+                            @*<span> @Html.DisplayFor(item => modelItem.DonGia) đ</span>*@
+                        </div>
+                    </a>
+
+                </div>
+
+
+            }
+
+
+            
+
+
+            
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+</head>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 address">
+            <h1>THÔNG TIN ĐẶT HÀNG</h1>
+            <div class="line"></div>
+            <div class="field-wrapper">
+                <label for="hoten" class="field-label">
+                    Họ và tên
+                </label>
+                <input type="text" class="field-input">
+            </div>
+            <div class="field-wrapper">
+                <label for="sdt" class="field-label">
+                    Số điện thoại
+                </label>
+                <input type="text" class="field-input">
+            </div>
+            <div class="field-wrapper">
+                <label for="email" class="field-label">
+                    Email
+                </label>
+                <input type="text" class="field-input">
+            </div>
+            <div class="field-wrapper">
+                <label for="diachi" class="field-label">
+                    Địa chỉ
+                </label>
+                <input type="text" class="field-input">
+            </div>
+            <h2>Phương thức thanh toán</h2>
+            <div class="radio-wrapper">
+                <input type="radio" class="radio-input" name="paymentMethod" value="card">
+                <span class="radio-label"><label for="paymentMethod">Thanh toán qua thẻ</label></span>
+            </div>
+            <div class="radio-wrapper">
+                <input type="radio" class="radio-input" name="paymentMethod" value="cod">
+                <span class="radio-label">
+                    <label for="paymentMethod">
+                        Thanh toán qua phương thức
+                        COD
+                    </label>
+                </span>
+            </div>
+            <div class="code-wrapper">
+                <input type="text" name="code" class="code-input" placeholder="Mã giảm giá" />
+                <button type="submit" class="code-btn btn btn-primary">Sử dụng</button>
+            </div>
+
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4 bill">
+            <h1>Đơn hàng</h1>
+            <div class="line"></div>
+            <div class="bill-item">
+                <div class="bill-item-img">
+                    <img src="~/Models/HinhAnh/2.jpg">
+                    <span class="badge badge-primary bill-item-quantity">1</span>
+                </div>
+                <div>
+                    <p class="bill-item-name">HUMAN MADE FLYING DUCK T-SHIRT BLACK</p>
+                    <p class="bill-item-size">Size: L</p>
+                </div>
+                <p class="bill-item-price">2.000.000đ</p>
+            </div>
+            <div class="line"></div>
+            <table class="total-table">
+                <tr class="total-line">
+                    <td class="total-line-name">Tạm tính:</td>
+                    <td class="total-line-price">2.000.000đ</td>
+                </tr>
+                <tr class="total-line">
+                    <td class="total-line-name">Phí vận chuyển:</td>
+                    <td class="total-line-price">15.000đ</td>
+                </tr>
+                <tr class="total-line">
+                    <td class="total-line-name">Tổng cộng:</td>
+                    <td class="total-line-price">2.015.000đ</td>
+                </tr>
+            </table>
+            <div style="display:flex;justify-content:center"><button type="submit" class="btn-order btn btn-primary">ĐẶT HÀNG</button> </div>
+
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+
+

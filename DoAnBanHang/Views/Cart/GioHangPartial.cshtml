@@ -1,0 +1,14 @@
+﻿@*@using DoAnBanHang.Models
+@{
+    TaiKhoan kh = (TaiKhoan)Session["TaiKhoan"];
+}
+@if (kh != null)
+{
+    <span style="color: white; font-weight: bold">
+        Username: @kh.Username
+    </span>
+}*@
+<a href="@Url.Action("HienThiGioHang", "Cart")" style="text-decoration: none; color:black; font-weight: bold">
+    <img src="~/Image/Giohang.gif" /> Giỏ hàng (@ViewBag.TongSL)
+</a>
+

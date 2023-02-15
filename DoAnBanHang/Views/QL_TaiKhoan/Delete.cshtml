@@ -1,0 +1,83 @@
+﻿@model DoAnBanHang.Models.TaiKhoan
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout_QL.cshtml";
+}
+<body>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Xóa Tài Khoản
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
+                <li><a href="/">Quản lý tài khoản</a></li>
+                <li class="active">Xóa Tài Khoản</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            @Html.HiddenFor(model=>model.ID_TK)
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">Tên đăng nhập:</h4>
+                        @*<input class="col-sm-5" type="text" name="TenSP" value="@Html.DisplayFor(model => model.)" />*@
+                        @Html.DisplayFor(model => model.Username)
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">Tên người dùng:</h4>
+                        @*<input class="col-sm-5" type="text" name="TenSP" value="ID_PhieuNhap" />*@
+                        @Html.DisplayFor(model => model.Ten)
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">Số điện thoại:</h4>
+                        @Html.DisplayFor(model => model.SDT)
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">Địa chỉ:</h4>
+                        @*<input class="col-sm-5" type="number" />*@
+                        @Html.DisplayFor(model => model.DiaChi)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4 class="col-sm-6" id="title">Điểm:</h4>
+                        @Html.DisplayFor(model=>model.Diem)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group text-center">
+                        <a href="~/QL_TaiKhoan/Delete/@Model.ID_TK">
+                            <button type="submit" class="btn btn-primary btn-lg" data-dismiss="modal">Xóa</button>
+                        </a>
+
+                        <a href="~/QL_TaiKhoan/TaiKhoan"> <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Đóng</button></a>
+                    </div>
+                }
+            </div>
+        </section>
+        }
+    </div>
+</body>
+
+

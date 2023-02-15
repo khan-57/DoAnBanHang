@@ -1,0 +1,63 @@
+﻿@model DoAnBanHang.Models.TaiKhoan
+    @using DoAnBanHang.Models;
+@{
+    /**/
+
+    ViewBag.Title = "ThongTinKhach";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var diem = ViewBag.Diem;
+    TaiKhoan tk = Session["TaiKhoan"] as TaiKhoan;
+    
+
+
+}
+@*@using (Html.BeginForm("", ""))
+    {*@
+<div class="row text-center" style="width:100%;text-align:center">
+    <b>Thông Tin Khách Hàng</b>
+</div>
+<hr />
+
+
+
+        @Html.HiddenFor(model => model.ID_TK)
+       
+
+       <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-6"><b>Họ tên:</b></div>
+                <div class="col-sm-6">@Html.DisplayFor(model => model.Ten)</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-6"><b>Số điện thoại:</b></div>
+                <div class="col-sm-6">@Html.DisplayFor(model => model.SDT)</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-6"><b>Địa chỉ:</b></div>
+                <div class="col-sm-6">@Html.DisplayFor(model => model.DiaChi)</div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-6"><b>Điểm thưởng:</b></div>
+                <div class="col-sm-6">@diem.Diem</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:30px">
+        <div class="col-sm-6">
+            <a class="btn-purchase" href="@Url.Action("CapNhatThongTin","Account",tk.ID_TK)" >Cập nhật thông tin</a>
+            @*@Html.ActionLink("Cập nhật thông tin", "CapNhatThongTin", tk.ID_TK)*@
+            @*<input type="submit" class="btn" value="Cập nhật thông tin"/>*@
+        </div>
+    </div>
+

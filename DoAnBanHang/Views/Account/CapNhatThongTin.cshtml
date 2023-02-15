@@ -1,0 +1,50 @@
+﻿@model DoAnBanHang.Models.TaiKhoan
+@{
+    /**/
+
+    ViewBag.Title = "ThongTinKhach";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var diem = ViewBag.Diem;
+}
+@*@using (Html.BeginForm("", ""))
+    {*@
+<div class="row text-center" style="width:100%;text-align:center">
+    <b>Cập nhật thông tin Khách Hàng</b>
+</div>
+<hr />
+    @Html.HiddenFor(model => model.ID_TK);
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-6"><b>Họ tên:</b></div>
+                <div class="col-sm-6">@Html.TextBoxFor(model=>model.Ten)</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-6"><b>Số điện thoại:</b></div>
+                <div class="col-sm-6">@Html.TextBoxFor(model => model.SDT)</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-6"><b>Địa chỉ:</b></div>
+                <div class="col-sm-6">@Html.TextBoxFor(model => model.DiaChi)</div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-6"><b>Điểm thưởng:</b></div>
+                <div class="col-sm-6">0</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <button class="btn" type="submit" style="background-color:turquoise">Cập nhật thông tin</button>
+        </div>
+    </div>
+

@@ -1,0 +1,75 @@
+﻿@using DoAnBanHang.Models
+@model List<Cart>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@if (Model != null)
+{
+    <head>
+        <script src="~/Scripts/app.js"></script>
+    </head>
+    <div class="container">
+        <h1>GIỎ HÀNG</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th colspan="2">Sản phẩm</th>
+                    <th>Size</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="cart-item">
+                        <td>
+                            <div class="item-img-wrap">
+                                <img class="detail-img" src="@Url.Content(item.Image)">
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <span>@Html.DisplayFor(model => item.TenSP)</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                               @*@item.Size*@
+                                @Html.DisplayFor(model=>item.Size)
+                            </div>
+                        </td>
+                        <td>
+                            <p> @item.DonGia</p>
+                        </td>
+                        <td style="width:20%">
+                            
+                            @*loz hoa lafm gium*@
+                            <input onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty) &amp; qty > 1 ) result.value--;return false;" class="change-quantity" id="minus" type="submit" value="-">
+                            <input class="quantity" type="number" id="quantity" name="quantity" min="1" value="@item.SoLuong">
+                            <input onclick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" class="change-quantity" id="plus" type="submit" value="+">
+
+                        </td>
+                        <td>@item.ThanhTien()</td>
+                        <td>
+                            @Html.ActionLink("Xóa hàng", "XoaMatHang", "Cart", new { MaSP = item.ID_SP, Size = item.Size }, new { @class = "btn btn-danger" })
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p class="total">THÀNH TIỀN: <span class="total-price">@ViewBag.TongTien</span></p>
+        <a href="@Url.Action("ThanhToan","Cart")"><button class="btn-purchase"><i class="fa-solid fa-cart-shopping"></i>Thanh Toán</button></a>
+    </div>
+}
+<script>
+    function TruSP() {
+
+    }
+</script>
+
